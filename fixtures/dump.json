@@ -1,0 +1,88 @@
+[
+{
+  "model": "webapp.topic",
+  "pk": 4,
+  "fields": {
+    "name": "Валера",
+    "description": "Кто валера?",
+    "created_at": "2025-08-02T09:30:14.275Z",
+    "author": 1,
+    "comments_count": 0
+  }
+},
+{
+  "model": "webapp.topic",
+  "pk": 5,
+  "fields": {
+    "name": "Самая новая",
+    "description": "проверка",
+    "created_at": "2025-08-02T10:16:23.710Z",
+    "author": 1,
+    "comments_count": 0
+  }
+},
+{
+  "model": "webapp.topic",
+  "pk": 6,
+  "fields": {
+    "name": "Теперь точна сама новая",
+    "description": "12312321",
+    "created_at": "2025-08-02T10:25:31.704Z",
+    "author": 1,
+    "comments_count": 0
+  }
+},
+{
+  "model": "webapp.topic",
+  "pk": 7,
+  "fields": {
+    "name": "testo",
+    "description": "12321312",
+    "created_at": "2025-08-02T10:33:15.675Z",
+    "author": 5,
+    "comments_count": 0
+  }
+},
+{
+  "model": "webapp.topic",
+  "pk": 8,
+  "fields": {
+    "name": "12312312",
+    "description": "3123123123123",
+    "created_at": "2025-08-02T11:04:36.427Z",
+    "author": 1,
+    "comments_count": 0
+  }
+},
+{
+  "model": "webapp.topic",
+  "pk": 9,
+  "fields": {
+    "name": "egsgstrgbts",
+    "description": "gbstgtsgts",
+    "created_at": "2025-08-02T11:04:40.199Z",
+    "author": 1,
+    "comments_count": 0
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 1,
+  "fields": {
+    "topic": 9,
+    "author": 4,
+    "content": "123213123",
+    "created_at": "2025-08-02T12:46:15.232Z"
+  }
+},
+{
+  "model": "webapp.comment",
+  "pk": 2,
+  "fields": {
+    "topic": 9,
+    "author": 1,
+    "content": "fdhydjfy",
+    "created_at": "2025-08-02T12:48:44.514Z"
+  }
+}
+]
