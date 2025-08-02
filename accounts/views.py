@@ -18,4 +18,4 @@ class RegisterView(CreateView):
         return redirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse('webapp:project_list')
+        return reverse('webapp:topic_list')

@@ -20,4 +20,4 @@ class Topic(models.Model):
         verbose_name_plural = 'Темы'
 
     def get_absolute_url(self):
-        return reverse('webapp:project_detail', kwargs={'pk': self.pk})
+        return reverse('webapp:topic_detail', kwargs={'pk': self.pk})
