@@ -1,8 +1,11 @@
 from urllib.parse import urlencode
 
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Q
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView
 
+from webapp.forms import TopicForm
 from webapp.forms.search import SearchForm
 from webapp.models import Topic
 
@@ -11,7 +14,7 @@ class TopicsListView(ListView):
     model = Topic
     context_object_name = 'topics'
     paginate_by = 5
-    ordering = ['id']
+    ordering = ['-created_at']
 
     def dispatch(self, request, *args, **kwargs):
         self.form = self.get_search_form()
@@ -38,3 +41,28 @@ class TopicsListView(ListView):
     def get_search_value(self):
         if self.form.is_valid():
             return self.form.cleaned_data['search']
+
+
+class TopicCreateView(CreateView):
+    template_name = 'topics/topic_create.html'
+    model = Topic
+    form_class = TopicForm
+    success_url = reverse_lazy('webapp:topic_list')
+    # permission_required = 'webapp.add_project'
+
+    # def has_permission(self):
+    #     return super().has_permission()
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class TopicDetailView(DetailView):
+    template_name = 'topics/topic_detail.html'
+    model = Topic
+    context_object_name = 'topic'
+    # permission_required = 'webapp.view_project'
+    #
+    # def has_permission(self):
+    #     return super().has_permission() and self.get_object().user.filter(pk=self.request.user.pk).exists()
