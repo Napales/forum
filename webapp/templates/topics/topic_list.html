@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="text-center mt-4 border-bottom border-primary border-3 mb-4">
+            <h1>Темы</h1>
+        </div>
+        <div class="mb-3">
+            {% include 'partial/search.html' with form=search_form %}
+        </div>
+        {% for topic in topics %}
+            <div class="col-12 col-md-4 mb-3">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ topic.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ topic.created_at }}</h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">{{ topic.author }}</h6>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">ответов {{ topic.comments }}</h6>
+{#                        <a href="{% url 'webapp:project_detail' project.pk %}"#}
+{#                           class="btn btn-outline-primary">Detail</a>#}
+{#                        {% if perms.webapp.change_project %}#}
+{#                            <a href="{% url 'webapp:project_update' project.pk %}"#}
+{#                               class="btn btn-outline-success">Update</a>#}
+{#                        {% endif %}#}
+{#                        {% if perms.webapp.delete_project %}#}
+{#                            <a href="{% url 'webapp:project_delete' project.pk %}"#}
+{#                               class="btn btn-outline-danger">Delete</a>#}
+{#                        {% endif %}#}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="text-center mt-5">
+                <p>Тем нету</p>
+            </div>
+        {% endfor %}
+    </div>
+    {% if is_paginated %}
+        <div class="text-center">
+            {% include 'partial/pagination.html' %}
+        </div>
+    {% endif %}
+{% endblock %}
