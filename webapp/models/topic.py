@@ -9,7 +9,7 @@ class Topic(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,
                                verbose_name='Автор', related_name='topics')
-    comments = models.PositiveIntegerField(default=0, verbose_name="Комментарии")
+    comments_count = models.PositiveIntegerField(default=0, verbose_name="Комментарии")
 
     def __str__(self):
         return f"{self.id} | {self.name} | {self.created_at} "

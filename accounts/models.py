@@ -7,4 +7,4 @@ def upload_to(instance, filename):
 
 class MyUser(AbstractUser):
     avatar = models.ImageField(upload_to=upload_to, verbose_name='Аватар', blank=False, null=False)
-    comments = models.PositiveIntegerField(default=0, verbose_name="Комментарии")
+    comments_count = models.PositiveIntegerField(default=0, verbose_name="Количество комментариев")
