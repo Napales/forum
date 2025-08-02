@@ -1,3 +1,10 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
+
+def upload_to(instance, filename):
+    return f'avatars/{instance.username}/{filename}'
+
+class MyUser(AbstractUser):
+    avatar = models.ImageField(upload_to=upload_to, verbose_name='Аватар', blank=False, null=False)
+    comments = models.PositiveIntegerField(default=0, verbose_name="Комментарии")
