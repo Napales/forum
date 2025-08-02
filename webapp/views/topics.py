@@ -5,9 +5,10 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
-from webapp.forms import TopicForm
+from webapp.forms import TopicForm, CommentForm
 from webapp.forms.search import SearchForm
-from webapp.models import Topic
+from webapp.models import Topic, Comment
+
 
 class TopicsListView(ListView):
     template_name = 'topics/topic_list.html'
@@ -48,10 +49,6 @@ class TopicCreateView(CreateView):
     model = Topic
     form_class = TopicForm
     success_url = reverse_lazy('webapp:topic_list')
-    # permission_required = 'webapp.add_project'
-
-    # def has_permission(self):
-    #     return super().has_permission()
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -62,27 +59,22 @@ class TopicDetailView(DetailView):
     template_name = 'topics/topic_detail.html'
     model = Topic
     context_object_name = 'topic'
-    # permission_required = 'webapp.view_project'
-    #
-    # def has_permission(self):
-    #     return super().has_permission() and self.get_object().user.filter(pk=self.request.user.pk).exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        topic = self.get_object()
+        context['comments'] = Comment.objects.filter(topic=topic).order_by('created_at')
+        context['comment_form'] = CommentForm()
+        return context
 
 class TopicUpdateView(UpdateView):
     template_name = 'topics/topic_update.html'
     form_class = TopicForm
     model = Topic
-    # permission_required = 'webapp.change_project'
-    #
-    # def has_permission(self):
-    #     return super().has_permission() and self.get_object().user.filter(pk=self.request.user.pk).exists()
 
 class TopicDeleteView(DeleteView):
     template_name = 'topics/topic_delete.html'
     model = Topic
     success_url = reverse_lazy('webapp:topic_list')
-    # permission_required = 'webapp.delete_project'
-    #
-    # def has_permission(self):
-    #     return super().has_permission() and self.get_object().user.filter(pk=self.request.user.pk).exists()
 
 

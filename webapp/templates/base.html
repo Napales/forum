@@ -37,7 +37,7 @@
 
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item my-auto ">
-                    {{ user }}
+                    <a href="{% url 'accounts:profile' user.pk %}">{{ user }}</a>
                 </li>
 
                 <span class="mx-2 text-muted mt-2">|</span>

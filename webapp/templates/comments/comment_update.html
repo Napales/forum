@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+    <h1>Update Comment</h1>
+    <form action="{% url 'webapp:comment_update' comment.pk %}" method="post">
+        {% include 'partial/form.html' %}
+        <input class="btn btn-outline-success" type="submit" value="Create"/>
+    </form>
+{% endblock %}
