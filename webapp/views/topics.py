@@ -3,7 +3,7 @@ from urllib.parse import urlencode
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.db.models import Q
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from webapp.forms import TopicForm
 from webapp.forms.search import SearchForm
@@ -75,4 +75,14 @@ class TopicUpdateView(UpdateView):
     #
     # def has_permission(self):
     #     return super().has_permission() and self.get_object().user.filter(pk=self.request.user.pk).exists()
+
+class TopicDeleteView(DeleteView):
+    template_name = 'topics/topic_delete.html'
+    model = Topic
+    success_url = reverse_lazy('webapp:topic_list')
+    # permission_required = 'webapp.delete_project'
+    #
+    # def has_permission(self):
+    #     return super().has_permission() and self.get_object().user.filter(pk=self.request.user.pk).exists()
+
 
